@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SVG Image Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SVG Image Viewer">
+    <meta name="keywords" content="SVG Image Viewer">
+    <meta name="author" content="Sohaib">
+    <!-- Load jquery, bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <!-- Custom CSS End -->
+</head>
+<body id = "body">
+    <h3>SVG Playground</h3>
+    Welcome To the SVG Playground, The Land of Dreams<br>
+    <p id = "log"></p>
+    <form ref='uploadForm' 
+      id='uploadForm'
+      method='post' 
+      encType="multipart/form-data">
+        <input id = "upfile" type="file" name="uploadFile" accept = ".svg" />
+        <input type='submit' value='Upload!' />
+    </form>     
+    <p id = "display">
+        <select id = "svgs">
+          
+        </select>
+    </p><br><br>
+    <div></div>
+    <p id = "view">
+        <table id = "viewpanel">
+            <tr id = "imgpanel"></tr>
+            <tr>
+                <td>Title</td>
+                <td>Description</td>
+            </tr>
+            <tr id = "tnd">
+                <td>NA</td>
+                <td>NA</td>
+            </tr>
+            <tr>
+                <td>Component</td>
+                <td>Summary</td>
+                <td>Other Attributes</td>
+            </tr>
+        </table>
+        <table id = "componentpanel"></table>
+    </p>
+    
+    <div id=edit>
+        <select id = "atts">
+            <option value = "" label = "Select One"></option>
+        </select>
+        <br><br>
+        <p><b><strong>Attributes</strong></b></p>
+        <p id = "viewatts">
+            <b>None</b>
+        </p>
+        <Hr><br>
+        <p id = "editatts">
+            <b>Add/Edit Attributes</b><br>
+            <form ref='attform'
+                  id='attform'>
+                  <div class="form-group">
+                        <label for="entrname">Name</label>
+                        <input type="text" class="form-control" id="entername" placeholder = "Required Field" required>
+                        <label for="entrvalue">Value</label>
+                        <input type="text" class="form-control" id="entervalue" placeholder = "Required Field" required>
+                    </div>
+                <div class="form-group">
+                    <input type='submit' class="btn btn-secondary" value = "Add/Edit">
+                </div>
+            </form>
+        </p>
+        <Hr><br>
+        <p id = "edittitle">
+            <b>Add/Edit Title</b><br>
+            <form ref='titleform'
+                  id='titleform'>
+                  <div class="form-group">
+                        <label for="entertitle">Title</label>
+                        <input type="text" class="form-control" id="entertitle" maxlength = "255" placeholder = "Required Field" required>
+                </div>
+                <div class="form-group">
+                    <input type='submit' class="btn btn-secondary" value = "Edit">
+                </div>
+            </form>
+        </p>
+        <p id = "editdesc">
+            <b>Add/Edit Description</b><br>
+            <form ref='descform'
+                  id='descform'>
+                  <div class="form-group">
+                        <label for="enterdesc">Description</label>
+                        <input type="text" class="form-control" id="enterdesc" maxlength = "255" placeholder = "Required Field" required>
+                </div>
+                <div class="form-group">
+                    <input type='submit' class="btn btn-secondary" value = "Edit">
+                </div>
+            </form>
+        </p>
+    </div>
+    <Hr>
+    <p><b>Add a Rectangle</b></p><br>
+    <form ref='rectform'
+          id='rectform'>
+            <div class="form-group">
+                <label for="enterx">x</label>
+                <input type="text" class="form-control" id="enterx" placeholder = "Required Field" required>
+                <label for="entery">y</label>
+                <input type="text" class="form-control" id="entery" placeholder = "Required Field" required>
+                <label for="enterw">Width</label>
+                <input type="text" class="form-control" id="enterw" placeholder = "Required Field" required>
+                <label for="enterh">Height</label>
+                <input type="text" class="form-control" id="enterh" placeholder = "Required Field" required>
+                <label for="enteru">Units</label>
+                <input type="text" class="form-control" id="enteru" maxlength = "49" placeholder="Required field.">
+            </div>
+        <div class="form-group">
+            <input type='submit' class="btn btn-secondary" value = "Add Shape Rectangle">
+        </div>
+    </form>
+
+    <Hr>
+    <p><b>Add a Circle</b></p><br>
+    <form ref='circform'
+          id='circform'>
+        <div class="form-group">
+            <label for="entercx">cx</label>
+            <input type="text" class="form-control" id="entercx" placeholder = "Required Field" required>
+            <label for="entercy">cy</label>
+            <input type="text" class="form-control" id="entercy" placeholder = "Required Field" required>
+            <label for="enterr">Radius</label>
+            <input type="text" class="form-control" id="enterr" placeholder = "Required Field" required>
+            <label for="entercu">Units</label>
+            <input type="text" class="form-control" id="entercu" maxlength = "49" placeholder="Required field">
+        </div>
+        <div class="form-group">
+            <input type='submit' class="btn btn-secondary" value = "Add Shape Circle">
+        </div>
+    </form>
+    <Hr>
+    <p><b>Add a Path</b></p><br>
+    <form ref='pathform'
+          id='pathform'>
+        <div class="form-group">
+            <label for="enterd">Data</label>
+            <input type="text" class="form-control" id="enterd" maxlength = "64" placeholder = "Required Field" required>
+        </div>
+        <div class="form-group">
+            <input type='submit' class="btn btn-secondary" value = "Add Shape">
+        </div>
+    </form>
+    
+    <Hr>
+    <p><b>Scale Rectangles</b></p><br>
+    <form ref='scalerform'
+          id='scalerform'>
+        <div class="form-group">
+            <label for="scaler">Ratio</label>
+            <input type="text" class="form-control" id="scaler" placeholder = "Required Field" required>
+        </div>
+        <div class="form-group">
+            <input type='submit' class="btn btn-secondary" value = "Scale Shape">
+        </div>
+    </form>
+        
+    <Hr>
+    <p><b>Scale Circles</b></p><br>
+    <form ref='scalecform'
+          id='scalecform'>
+        <div class="form-group">
+            <label for="scalec">Ratio</label>
+            <input type="text" class="form-control" id="scalec" placeholder = "Required Field" required>
+        </div>
+        <div class="form-group">
+            <input type='submit' class="btn btn-secondary" value = "Scale Shape">
+        </div>
+    </form>
+        
+    <Hr>
+    <p><b>Creat a SVG File</b></p><br>
+    <form ref='svgform'
+          id='svgform'>
+        <div class="form-group">
+            <label for="svg">Name</label>
+            <input type="text" class="form-control" id="svg" accept = ".svg" placeholder = "Required Field" required>
+        </div>
+        <div class="form-group">
+            <input type='submit' class="btn btn-secondary" value = "Create SVG">
+        </div>
+    </form>
+    <Hr><br>
+    <!-- Leave me at the bottom of body -->
+    <script src="/index.js"></script>
+</body>
+</html>

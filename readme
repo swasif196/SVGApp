@@ -1,0 +1,26 @@
+Sohaib Wasif
+0874921
+CIS2750
+A3
+
+SVG Log Panel displays all valid files. Files can be downloaded by clicking the SVG or the name. For some of the SVG's number of groups is not correct which is due to my GetGroup function not working properly.
+
+You can upload valid SVG files but if a SVG file with the same name already exists in the log panel it won't let you upload another with the same name.
+
+All valid SVG files are in the dropdown list. We will call that dropdown list Bob for any further reference of it in this readme.
+
+The view panel displays the SVG selected in the Bob and displays its title, description and elements.
+
+All the elements of the SVG being displayed can be found in a second dropdown list which we will call Harry for any further reference of it in this readme. When you select an element from Harry all it's attributes will be shown to you given that it has any attributes.
+
+You can add/edit any valid attribute to the element selected in Harry.
+
+You can also edit the Title and Description for the SVG selected in Bob.
+
+You can also add any elements like a circle or a rectangle or a path to a SVG selected in Bob. When you are adding an element/component you have to enter a valid value for unit when adding a rectangle or a circle or else it will tell you that you have entered invalid shape. You can not leave the units field empty.
+
+You can also scale all rectangles or circles found in the SVG selected in Bob by some ratio.
+
+You can also create a valid new SVG and it will be uploaded to the server and show up in the log and Bob. Only downside is that any SVG created by the user doesn't have a viewbox attribute for its SVG element and as such the SVG will only partially appear in log and the view panel. You have to right click the SVG to view it in a seperate tab where the full SVG and all its elements can be seen.
+
+Everytime you Upload a SVG or successfully edit the SVG in any way the log/view panel plus Bob and Harry will be refreshed.
